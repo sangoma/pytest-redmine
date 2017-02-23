@@ -8,10 +8,14 @@
 # Simon Gomizelj <sgomizelj@sangoma.com>
 
 import py
+import sys
 import pytest
 import redmine
 from _pytest.runner import Skipped
-from ConfigParser import ConfigParser, NoOptionError, NoSectionError
+if sys.version_info >= (3, 0):
+    from configparser import ConfigParser, NoOptionError, NoSectionError
+else:
+    from ConfigParser import ConfigParser, NoOptionError, NoSectionError
 
 
 class PytestRedmineError(Exception):
