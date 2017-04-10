@@ -26,7 +26,7 @@ setup(
                  'Topic :: Utilities'],
     install_requires=[
         'pytest>=2.6.0',
-        'python-redmine'
+        'python-redmine>=2.0'
     ],
     entry_points={
         'pytest11': ['pytest_redmine = pytest_redmine.plugin']

@@ -10,7 +10,7 @@
 import py
 import sys
 import pytest
-import redmine
+import redminelib
 from _pytest.runner import Skipped
 if sys.version_info >= (3, 0):
     from configparser import ConfigParser, NoOptionError, NoSectionError
@@ -48,14 +48,14 @@ def connect_to_redmine():
 
     try:
         baseurl = cfg.get('redmine', 'baseurl')
-        return redmine.Redmine(baseurl, key=cfg.get('redmine', 'apikey'))
+        return redminelib.Redmine(baseurl, key=cfg.get('redmine', 'apikey'))
     except NoSectionError:
         raise PytestRedmineError("No [redmine] section found in redmine.ini")
     except NoOptionError:
         try:
-            return redmine.Redmine(baseurl,
-                                   username=cfg.get('redmine', 'username'),
-                                   password=cfg.get('redmine', 'password'))
+            return redminelib.Redmine(baseurl,
+                                      username=cfg.get('redmine', 'username'),
+                                      password=cfg.get('redmine', 'password'))
         except NoOptionError:
             raise PytestRedmineError("Not configured with either an api key "
                                      "or login credentials")
